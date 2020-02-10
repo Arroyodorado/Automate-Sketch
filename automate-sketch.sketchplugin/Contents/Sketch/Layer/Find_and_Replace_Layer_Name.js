@@ -50,6 +50,9 @@ var onRun = function(context) {
     var regExpView = ui.checkBox(nameRegExp, "Use Regular Expression");
     dialog.addView(regExpView);
 
+    dialog.setKeyOrder([findView, replaceView]);
+    dialog.focus(findView);
+
     var responseCode = dialog.run();
     if (responseCode == 1000) {
 
@@ -89,9 +92,16 @@ var onRun = function(context) {
             : regExpPrefix + escapeRegExp(findView.stringValue()) + regExpSuffix;
         var replaceString = replaceView.stringValue();
 
+        var regExp;
+        try {
+            regExp = new RegExp(regExpPattern, rexExpFlag);
+        } catch (error) {
+            toast("Invalid regular expression.");
+            return;
+        }
+
         var count = 0;
         util.toArray(layers).forEach(function(layer) {
-            var regExp = new RegExp(regExpPattern, rexExpFlag);
             if (regExp.test(layer.name())) {
                 count ++;
                 var newName = layer.name().replace(regExp, replaceString);

@@ -6,11 +6,13 @@ var onRun = function(context) {
     var preferences = require("../modules/Preferences");
     var Dialog = require("../modules/Dialog").dialog;
     var ui = require("../modules/Dialog").ui;
-    
-    var document = context.document;
-    var textStyles = document.documentData().layerTextStyles().sharedStyles();
-    if (textStyles.count() == 0) {
-        document.showMessage("No text styles in current document.");
+
+    var sketch = require("sketch");
+    var document = sketch.getSelectedDocument();
+    var textStyles = document.sharedTextStyles;
+
+    if (textStyles.length == 0) {
+        sketch.UI.message("No text styles in current document.");
         return;
     }
 
@@ -20,6 +22,23 @@ var onRun = function(context) {
         "Create typography guide from document text styles. \n\nIf your want to use style name as preview text, leave the option blank."
     );
 
+    dialog.addLabel("Choose Text Styles for Guide:");
+
+    var styleGroups = [];
+    textStyles.forEach(function(item) {
+        var nameParts = item.name.split(/(\/)/);
+        if (nameParts.length > 1) {
+            if (!styleGroups.includes(nameParts[0])) {
+                styleGroups.push(nameParts[0]);
+            }
+        }
+    });
+    styleGroups.sort();
+    styleGroups.unshift("All Styles in this Document");
+
+    var styleGroupsView = ui.popupButton(styleGroups);
+    dialog.addView(styleGroupsView);
+
     dialog.addLabel("Preview Text:");
 
     var textField = ui.textField(preferences.get("previewText") || "");
@@ -28,7 +47,7 @@ var onRun = function(context) {
     var responseCode = dialog.run();
     if (responseCode == 1000) {
 
-        var page = document.currentPage();
+        var page = document.sketchObject.currentPage();
 
         var point;
         if (MSApplicationMetadata.metadata().appVersion >= 49) {
@@ -39,7 +58,7 @@ var onRun = function(context) {
 
         var typographyPositionX = point.x,
             typographyPositionY = point.y,
-            spaceBetweenTypographys = 32,
+            spaceBetweenTypographies = 32,
             spaceBetweenTypographyAndText = 8,
             textHeight = 16,
             textFontSize = 14,
@@ -51,9 +70,17 @@ var onRun = function(context) {
 
         var typographyGroupLayers = [];
 
-        var loopTextStyles = textStyles.objectEnumerator();
-        var textStyle;
-        while (textStyle = loopTextStyles.nextObject()) {
+        for (var i = 0; i < textStyles.length; i++) {
+
+            var item = textStyles[i]
+            if (styleGroupsView.indexOfSelectedItem() > 0) {
+                var nameParts = item.name.split(/(\/)/);
+                if (nameParts[0] != styleGroupsView.titleOfSelectedItem()) {
+                    continue;
+                }
+            }
+
+            var textStyle = item.sketchObject;
 
             // Add layer group
             var typographyGroup = MSLayerGroup.alloc().init();
@@ -96,30 +123,27 @@ var onRun = function(context) {
             } else {
                 typographyGroup.resizeToFitChildrenWithOption(1);
             }
-            typographyPositionY = typographyPositionY + spaceBetweenTypographys + typographyGroup.frame().height();
+            typographyPositionY = typographyPositionY + spaceBetweenTypographies + typographyGroup.frame().height();
 
             typographyGroupLayers.push(typographyGroup);
 
-        }
+        };
 
-        centerRect_byLayers(document, typographyGroupLayers);
+        centerRect_byLayers(document.sketchObject, typographyGroupLayers);
 
     }
 
 };
 
 function centerRect_byLayers(document, layers) {
-
     var rects = layers.map(function(item) {
         return MSRect.alloc().initWithRect(item.absoluteRect().rect());
     });
     var rect = MSRect.rectWithUnionOfRects(rects).rect();
-
     var appVersion = MSApplicationMetadata.metadata().appVersion;
     if (appVersion >= 48) {
         document.contentDrawView().centerRect_animated(rect, true);
     } else {
         document.currentView().centerRect_animated(rect, true);
     }
-
 }

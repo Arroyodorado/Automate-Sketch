@@ -20,6 +20,7 @@ Make your workflow more efficient.
 | Fix to Parent with Margin                                    | Fix the width and height of the parent, and set the margins. |
 | Fix to Parent Width (Height) with Margin                     | Fix the width or height of the parent, and set the margins.  |
 | Swap Width and Height                                        | Swap width and height for all selected layers.               |
+| Resize With Ratio                                            | Resize selected layers with an aspect ratio.                 |
 | Adjust Sizes                                                 | Increase/decrease width/height for selected layers from right/bottom/center origin, the increase/decrease value can be changed in "Preferences" - "Nudging". |
 | Bounds Layer for Every Selection                             | Create a bounds layer from the selected layer.               |
 | Divide Layer                                                 | Split Layer.                                                 |
@@ -46,6 +47,7 @@ Make your workflow more efficient.
 | Rename Layers                                                | Rename selected layers use custom template.                  |
 | Find and Replace Layer Name                                  | Find and replace layer name.                                 |
 | Clear Layer Name                                             | Clears the layer name and removes the "copy" after the layer name. |
+| Toggle Mask for Selected Layers                              | Toggle mask or unmask for selected layers.                   |
 | Create / Sync Link Layer                                     | Create a link symbol layer from select group or artboard, and update the link symbol layers. |
 | **Arrange**                                                  |                                                              |
 | Change Places Between Two Layers                             | Change two objects positions based on midpoint or coordinate origin. |
@@ -70,6 +72,7 @@ Make your workflow more efficient.
 | Change Text Orientation                                      | Change Text Orientation for CJK text layout.                 |
 | Change Typeface for Latin Character                          | Change the typeface for latin-character in the text layer.   |
 | Add Space Between CJK and Latin Character                    | Add space between Chinese and Western.                       |
+| Increase/Decrease Font Weight                                | Increase or decrease font weight for selected layers.        |
 | Replace Fonts                                                | Replace Fonts.                                               |
 | Resize to Fit Text Height                                    | Resize text layer to fit text field height.                  |
 | Toggle Auto and Fixed                                        | Toggle selected text layers auto and fixed.                  |
@@ -91,26 +94,30 @@ Make your workflow more efficient.
 | Artboard to Group                                            | Artboard to group.                                           |
 | Select Parent Artboard                                       | Select parent artboard for selected layers.                  |
 | Artboard Navigator                                           | Quickly go to artboard and rename it.                        |
-| Resize to Fix Height                                         | Adjusts the artboard to fit the height.                      |
+| Resize to Fix Height / Width                                 | Adjusts the artboard to fit the height or width.             |
 | Toggle Adjust Content on Resize                              | Turn on/off for all selected artboard and symbol master.     |
-| Move Artboards to Bottom of Anther                           | Move artboards or symbol masters to the bottom of another one. |
+| Move Artboards to Bottom of Anther                           | Move selected artboards or symbol masters to the bottom of another one. |
+| Move to Page                                                 | Move selected artboards or symbol masters to another page.   |
 | Export all Artboards                                         | Export all artboards, symbols to PNG / SVG.                  |
 | Export all Artboards to HTML                                 | Export show with HTML, searchable. When using SVG format, you can drag directly into Sketch. |
 | **Symbol**                                                   |                                                              |
 | Reset to Original Width / Height / Size                      | Reset to original width / height / Size.                     |
-| Replace Override Symbol                                      | Find and replace override symbol for selected or all symbol instances in document. |
+| Shrink Instance to Fit Content                               | Shrink Instance to Fit Content.                              |
+| Find and Replace Symbol                                      | Find and replace symbol layer and override.                  |
 | Reset Overrides                                              | Reset symbol overrides in selection.                         |
 | Disable or Enable All Overrides                              | Toggle disable or enable all override for selected local symbol instances or symbol masters. |
 | Disable Selected Overrides                                   | Disable selected overrides for selected local symbol instances. |
 | Select All Instance of Symbol                                | Select all instances of the symbol.                          |
-| Select All Instances of Imported symbol                      | Select all instances of imported symbol (library symbol).    |
+| Select Same Instances in Current Page                        | Select all instances of selected symbol in current page.     |
 | Rename Instances                                             | Rename all instances,  rename selection instances, rename instance by symbol master. |
 | Rename Instances Use Text Override                           | Rename seleted symbol instances with the vaule of selected text override, if instance have only one text override rename the instance with this value. |
 | Create Symbols from Selected Layers                          | Create symbol masters from selected layers.                  |
 | Selection to Symbol Master                                   | Change the selected layer directly into the symbol in its original position. |
+| Detach All Symbols in Page or Artboard                       | Detach all symbol instances in current page or artboard.     |
 | Detach Unused Symbol Master                                  | Converts unused symbol templates to groups.                  |
 | Remove Unused Symbols                                        | Remove unused symbols, for Sketch 48+, with symbol preview.  |
 | Export all Symbols As PNG                                    | Export all symbols as PNG according to the "Page / symbol" rule. |
+| Insert Symbols                                               | Insert local symbols that name match the regular expression. |
 | Sync Symbol Master from Sketch File                          | Synchronize symbols from Sketch files base on symbol ID.     |
 | Replace Pages from Sketch File                               | Forcing the replacement of the same name from the Sketch file, you can import the page containing the symbol by modifying the page name. |
 | **Library**                                                  |                                                              |
@@ -124,7 +131,9 @@ Make your workflow more efficient.
 | Import Document Assets from Library                          | Import document assets like colors, gradients and images from any library. |
 | Import Styles from Library                                   | Import text styles and layer styles from any library.        |
 | Add Library Preview                                          | Add a artboard for library preview image.                    |
+| Insert Symbols From Library                                  | Insert symbol that name match the regular expression from the choose library. |
 | Update Selected Library Symbol                               | Only update the selected library symbols.                    |
+| Update Selected Symbol Overrides                             | Update selected symbol overrides.                            |
 | Check For Library Updates                                    | Check for library updates.                                   |
 | **Styles**                                                   |                                                              |
 | Select Layer by Layer / Text Style                           | Select layer by layer or text style in curret page, selected layer groups. |
@@ -137,6 +146,10 @@ Make your workflow more efficient.
 | Remove Unused Layer / Text Styles                            | Remove unused layer styles and text styles.                  |
 | Reset Style                                                  | Reset style for selected layers.                             |
 | Update Style                                                 | Update or unlink and update for selected layers.             |
+| Reset All Layer / Text Styles                                | Reset all layer or text styles in document.                  |
+| Find and Replace Layer/Text Style                            | Find and replace layer or text style (include overrides) in current page, document or selected layers. |
+| Merge Local Layer/Text Style with Same Name                  | Merge local styles with same name.                           |
+| Change Layer Blend Mode                                      | Change blend mode for selected layers.                       |
 | Create Color Guide                                           | Create a color guide from document colors.                   |
 | Create Style Guide                                           | Greate style guide from layer styles in current document.    |
 | Create Typography Guide                                      | Create typography style guide from text styles in current document. |
@@ -150,6 +163,9 @@ Make your workflow more efficient.
 | Hide or Show All Grid/Layout                                 | Hide or show all grid or layout of artboard.                 |
 | Copy Grid/Layout/Guide                                       | Copy the grid/layout/guide from seleted artboard.            |
 | Paste Grid/Layout/Guide                                      | Apply the grid/layout/guide for seleted artboards, you must run Copy Grid/Layout/Guide first. |
+| New Guide                                                    | Create new guides.                                           |
+| New Guide Layout                                             | Create a guide layout.                                       |
+| New Guides From Layer                                        | Create guides base selected layers.                          |
 | **Data**                                                     |                                                              |
 | Export Data From Text Layers                                 | Export text file from the content of selected text layers.   |
 | Export Image From Layers                                     | Export images from selected bitmap or image-fill layers.     |
@@ -162,15 +178,20 @@ Make your workflow more efficient.
 | Remove All Hotspot                                           | Remove all hotspot layer.                                    |
 | Remove Hotspot in Selected Artboards                         | Remove hotspot in selected artboards or symbol masters.      |
 | **Development**                                              |                                                              |
-| Pick Color and Copy the HEX Code                             | Pick a color from screen and copy the HEX code.              |
+| Copy as PNG, PNG @2x, SVG                                    | Copy seleceted layer as png, 2x png, svg.                    |
+| Copy SVG Path Data                                           | Copy SVG path data code from a selected shape layer.         |
+| Copy Slice as SVG Code                                       | Copy SVG Code from selected slice layer.                     |
+| Copy SVG Code (URL-encoded)                                  | Copy URL-encoded SVG Code from selected slice layer for CSS background image. |
 | Copy Slice as Base64                                         | The slice image is copied to Base64, depending on the format and scale of the first item of the slice, you can get a different image. |
+| Export Artboard to ICNS File                                 | Export selected artboard to icns file.                       |
+| Pick Color and Copy the HEX Code                             | Pick a color from screen and copy the HEX code.              |
 | Copy Selected Layer Name                                     | Copy the selected layer name to the clipboard.               |
 | Copy ObjectID or SymbolID                                    | When you select a layer, copy the ObjectID or SymbolID of the layer to the clipboard. |
-| Copy SVG Path Data                                           | Copy SVG path data code from a selected shape layer.         |
 | Show and Change Layer Info                                   | Show and change layer's objectID, symbolID etc.              |
 | Plugin Dev Setting                                           | Some environment configs for Sketch plugin development.      |
 | Reload Plugins                                               | Reload all plugins.                                          |
 | **Utilities**                                                |                                                              |
+| Shortcuts Manager                                            | A shortcuts manager.                                         |
 | Insert Layers from SVG Code                                  | Insert shape layers from SVG code.                           |
 | Insert Layer from SVG Path Data                              | Insert a shape layer from SVG path data code.                |
 | Export Clean Code SVG                                        | Export or copy selected layers to clean code SVG, it can ignore layers by name or type, and optimize with SVGO. |
